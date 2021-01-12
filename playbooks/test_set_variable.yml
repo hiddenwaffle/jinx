@@ -1,0 +1,16 @@
+---
+- name: Doing the thing
+  hosts: localhost
+  tasks:
+    - name: Part 1
+      set_fact:
+        source_schema: 'This does not work'
+        source_schema2: "x{{ source_schema|upper }}x"
+    - debug:
+        msg: "source_schema: {{ source_schema }}, source_schema2; {{ source_schema2 }}"
+    - name: Part 2
+      set_fact:
+        source_schema: 'This does not work again'
+        source_schema2: "THIS_WORKS_{{ source_schema2|upper }}"
+    - debug:
+        msg: "source_schema: {{ source_schema }}, source_schema2: {{ source_schema2 }}"

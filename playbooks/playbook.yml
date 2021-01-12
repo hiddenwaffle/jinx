@@ -1,0 +1,15 @@
+---
+- hosts: all
+  tasks:
+    - name: Get the OS
+      command: 'uname'
+      register: os
+    - name: Print the OS
+      debug:
+        msg: "{{ os.stdout }} is the operating system"
+    - include_role:
+        name: hellorole
+        tasks_from: cheese.yml
+        apply:
+          tags: [ "never", "cheese" ]
+      tags: [ "cheese" ]
