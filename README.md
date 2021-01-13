@@ -14,7 +14,16 @@ docker run --user 0 --rm --privileged -p 8080:8080 -p 50000:50000 -v /var/run/do
 1. [Docker Pipeline](https://github.com/jenkinsci/docker-workflow-plugin)
 1. [Git](https://github.com/jenkinsci/git-plugin)
 
-## Manual steps
+### Credentials
+
+* Go to the [global credentials store](http://localhost:8080/credentials/store/system/domain/_/)
+* Add a secret text named `credential1`
+* Add a private key named `hepburn-pk` using the contents of `.vagrant/machines/hepburn/virtualbox/private_key`
+* Add a private key named `peck-pk` using the contents of `.vagrant/machines/peck/virtualbox/private_key`
+
+## Ansible
+
+### Manual steps
 
 Add to /etc/hosts
 
@@ -23,7 +32,7 @@ Add to /etc/hosts
 127.0.0.1 peck.local
 ```
 
-## Example commands
+### Example commands
 
 Not all of these still work. A lot of the referenced files have been renamed or moved.
 
@@ -46,4 +55,6 @@ poetry run ansible -i hosts.yml roman -b -m shell -a 'tail /var/log/messages | g
 poetry run ansible-playbook playbooks/test_set_variable.yml
 
 poetry run ansible -i 'localhost,' localhost --connection=local -m debug -a 'msg="Hello World"'
+
+poetry run ansible -i inventory/hosts.yml roman -l hepburn.local -a 'who am i' --private-key=.vagrant/machines/hepburn/virtualbox/private_key
 ```
