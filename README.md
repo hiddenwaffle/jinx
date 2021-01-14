@@ -5,7 +5,7 @@
 From the repository root:
 
 ```
-docker run --user 0 --rm --privileged -p 8080:8080 -p 50000:50000 -v /var/run/docker.sock:/var/run/docker.sock -v $(which docker):/usr/bin/docker -v $PWD/jenkins_home:/var/jenkins_home jenkins/jenkins:lts
+docker run --user 0 --rm --privileged -p 8080:8080 -p 50000:50000 -v /var/run/docker.sock:/var/run/docker.sock -v $(which docker):/usr/bin/docker -v $PWD/jenkins_home:/var/jenkins_home -v $PWD:/app jenkins/jenkins:lts
 ```
 
 ### Plugins
