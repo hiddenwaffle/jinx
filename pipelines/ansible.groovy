@@ -12,7 +12,7 @@ node {
         }
         stage('Do it') {
             withCredentials([sshUserPrivateKey(credentialsId: 'hepburn-pk', keyFileVariable: 'HEPBURN_PK')]) {
-                sh '''$HOME/.poetry/bin/poetry run ansible -i inventory/hosts.yml roman -l hepburn.local -a 'free -h' --private-key $HEPBURN_PK '''
+                sh '''$HOME/.poetry/bin/poetry run ansible -i inventory/hosts.yml roman -l hepburn.local -a 'free -h' --extra-vars "ansible_ssh_private_key_file=${HEPBURN_PK}" '''
                 //sh '''ssh hepburn.local -p 2222 -i $HEPBURN_PK -v 'df -H' '''
             }
         }
