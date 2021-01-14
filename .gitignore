@@ -1,4 +1,4 @@
-# Should match .dockerignore
+# Should match .dockerignore (if any)
 .vagrant
 tmp/**/*
 jenkins_home
