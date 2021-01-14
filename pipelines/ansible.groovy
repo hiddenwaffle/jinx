@@ -1,6 +1,6 @@
 node {
     git branch: 'main', url: 'https://github.com/hiddenwaffle/jinx.git'
-    def inage = docker.build("tempdeleteme:${env.BUILD_ID}")
+    def image = docker.build("tempdeleteme:47") // ${env.BUILD_ID}
     //docker.image('tempdeleteme:1').inside {
     image.inside {
         stage('Do it') {
