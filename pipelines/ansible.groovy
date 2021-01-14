@@ -1,5 +1,6 @@
 node {
     stage('Setup') {
+        checkout scm
         sh 'ls -lrt'
         sh 'pwd'
     }
