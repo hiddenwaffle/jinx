@@ -17,4 +17,6 @@ RUN \
 
 # Set up dependencies
 COPY pyproject.toml poetry.lock ./
-RUN poetry install
+RUN \
+    poetry config virtualenvs.create false && \
+    poetry install
