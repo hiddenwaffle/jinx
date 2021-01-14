@@ -4,8 +4,7 @@ node {
         sh 'ls -lrt'
         sh 'pwd'
     }
-    def image = docker.build("tempdeleteme:47") // ${env.BUILD_ID}
-    //docker.image('tempdeleteme:1').inside {
+    def image = docker.build("tempdeleteme:latest")
     image.inside('--add-host=hepburn.local:192.168.65.2 --add-host=peck.local:192.168.65.2') {
         stage('Do it') {
             sh 'ls -lrt'
