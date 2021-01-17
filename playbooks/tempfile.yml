@@ -1,0 +1,23 @@
+---
+- hosts: all
+  gather_facts: no
+  tasks:
+    - tempfile:
+        state: file
+        suffix: temp
+      register: tempfile
+    - debug:
+        msg: "{{ tempfile.path }}"
+    - copy:
+        src: /etc/hosts
+        dest: "{{ tempfile.path }}"
+    - slurp:
+        src: "{{ tempfile.path }}"
+      register: hosts_file
+    - set_fact:
+        hosts: "{{ hosts_file.content | b64decode }}"
+    - debug:
+        var: hosts
+    - file:
+        path: "{{ tempfile.path }}"
+        state: absent

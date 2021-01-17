@@ -23,7 +23,7 @@ docker run --user 0 --rm --privileged -p 8080:8080 -p 50000:50000 -v /var/run/do
 * Update the ecdsa-sha2-nistp256 public keys of both servers in the `Dockerfile`
     * ```
       ssh-keyscan -p 2222 hepburn.local
-      ssh-keyscan -p 2222 peck.local
+      ssh-keyscan -p 2200 peck.local
       ```
 
 ## Ansible
@@ -61,5 +61,9 @@ poetry run ansible-playbook playbooks/test_set_variable.yml
 
 poetry run ansible -i 'localhost,' localhost --connection=local -m debug -a 'msg="Hello World"'
 
+poetry run ansible -i inventory/hosts.yml roman -a 'who am i'
+poetry run ansible -i inventory/hosts.yml roman -l hepburn.local -a 'who am i'
 poetry run ansible -i inventory/hosts.yml roman -l hepburn.local -a 'who am i' --private-key=.vagrant/machines/hepburn/virtualbox/private_key
+
+
 ```

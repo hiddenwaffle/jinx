@@ -11,7 +11,7 @@ ENV PATH "$PATH:/root/.poetry/bin"
 RUN \
     mkdir ~/.ssh && chmod 700 ~/.ssh && \
     echo "[hepburn.local]:2222 ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBGu8Qb0xqN80d/H/DN6rToJthkFQpt1IrtE2ZruzmjT4K4/vByHjocokSkTNr/+p6adUMem26lvl+wgzBNDAAcc=" >> ~/.ssh/known_hosts && \
-    echo "[peck.local]:2222 ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBGu8Qb0xqN80d/H/DN6rToJthkFQpt1IrtE2ZruzmjT4K4/vByHjocokSkTNr/+p6adUMem26lvl+wgzBNDAAcc=" >> ~/.ssh/known_hosts
+    echo "[peck.local]:2200 ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBLQb+dEowvaiha5dISUMoiRf7502TnOifwWxpxAdgJDlizy0VEJUUSzEEPmFKDRFDNS147cIHTEVTPui9eiNZkQ=" >> ~/.ssh/known_hosts
 
 # Set up dependencies
 COPY pyproject.toml poetry.lock ./
