@@ -5,7 +5,7 @@
 From the repository root:
 
 ```
-docker run --user 0 --rm --privileged -p 8080:8080 -p 50000:50000 -v /var/run/docker.sock:/var/run/docker.sock -v $(which docker):/usr/bin/docker -v $PWD/jenkins_home:/var/jenkins_home -v $PWD:/app jenkins/jenkins:lts
+docker run --user 0 --rm --privileged -p 8080:8080 -p 50000:50000 -v /var/run/docker.sock:/var/run/docker.sock -v $(which docker):/usr/bin/docker -v $PWD/jenkins_home:/var/jenkins_home -v $PWD:/app jenkins/jenkins:2.263.2-lts
 ```
 
 ### Plugins
@@ -20,6 +20,11 @@ docker run --user 0 --rm --privileged -p 8080:8080 -p 50000:50000 -v /var/run/do
 * Add a secret text named `credential1`
 * Add a private key named `hepburn-pk` using the contents of `.vagrant/machines/hepburn/virtualbox/private_key`
 * Add a private key named `peck-pk` using the contents of `.vagrant/machines/peck/virtualbox/private_key`
+* Update the ecdsa-sha2-nistp256 public keys of both servers in the `Dockerfile`
+    * ```
+      ssh-keyscan -p 2222 hepburn.local
+      ssh-keyscan -p 2222 peck.local
+      ```
 
 ## Ansible
 

@@ -10,8 +10,8 @@ ENV PATH "$PATH:/root/.poetry/bin"
 # WARNING: These values can/will probably change
 RUN \
     mkdir ~/.ssh && chmod 700 ~/.ssh && \
-    echo "[hepburn.local]:2222 ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBO6WMqyabG5PbImHJTuuNaaVa2glHxrScWDBrFmROenvA4miDHPx5Q5ZqrSqjwJ4CtneDosKgqULVfm09S0hLGg=" >> ~/.ssh/known_hosts && \
-    echo "[peck.local]:2200 ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBKTORHuY2wx1VjenGYm8y6q3cyxz7IfFYDAPdZDnLJyV/9OJhMLZXd8jHg+XsrnNS25EoTg9mNWhDSFQCiFJdaA=" >> ~/.ssh/known_hosts
+    echo "[hepburn.local]:2222 ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBGu8Qb0xqN80d/H/DN6rToJthkFQpt1IrtE2ZruzmjT4K4/vByHjocokSkTNr/+p6adUMem26lvl+wgzBNDAAcc=" >> ~/.ssh/known_hosts && \
+    echo "[peck.local]:2222 ecdsa-sha2-nistp256 AAAAE2VjZHNhLXNoYTItbmlzdHAyNTYAAAAIbmlzdHAyNTYAAABBBGu8Qb0xqN80d/H/DN6rToJthkFQpt1IrtE2ZruzmjT4K4/vByHjocokSkTNr/+p6adUMem26lvl+wgzBNDAAcc=" >> ~/.ssh/known_hosts
 
 # Set up dependencies
 COPY pyproject.toml poetry.lock ./
