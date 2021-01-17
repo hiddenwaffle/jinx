@@ -14,7 +14,7 @@ node {
 //         }
         stage('Do it 2') {
             withCredentials([sshUserPrivateKey(credentialsId: 'peck-pk', keyFileVariable: 'PECK_PK')]) {
-                sh '''poetry run ansible -vvvv -i inventory/hosts.yml roman -l peck.local -a 'free -h' --extra-vars "ansible_ssh_private_key_file=${PECK_PK}" '''
+                sh '''ANSIBLE_STDOUT_CALLBACK=yaml poetry run ansible -vvvv -i inventory/hosts.yml roman -l peck.local -a 'free -h' --extra-vars "ansible_ssh_private_key_file=${PECK_PK}" '''
             }
         }
     }
