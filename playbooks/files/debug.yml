@@ -1,0 +1,5 @@
+---
+- debug:
+    msg: "testA {{ item }}"
+- debug:
+    msg: "testB {{ item }}"

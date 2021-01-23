@@ -1,0 +1,19 @@
+---
+- hosts: localhost
+  gather_facts: no
+  tasks:
+    - name: 'Call the debug file'
+      include_tasks:
+        file: files/debug.yml
+        apply:
+          tags:
+            - 'doit' # anti-DRY, bleh, https://serverfault.com/a/1048724
+      loop:
+        - 1
+        - 2
+        - 3
+      tags: 'doit' # ansible-playbook playbooks/block_loop.yml -t doit
+
+# cannot use import_tasks which would have not needed the tags applied, i assume, because:
+# "ERROR! You cannot use loops on 'import_tasks' statements. You should use 'include_tasks' instead."
+# oh ffs

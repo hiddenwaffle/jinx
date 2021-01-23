@@ -1,8 +1,17 @@
 ---
 - hosts: all
-  gather_facts: no  # TODO: temporary?
+  gather_facts: no # TODO: temporary?
   tasks:
     - name: Test
       command: >
         echo 'hello world'
         cat /etc/hosts
+      register: output
+    - debug:
+        var: output.stdout
+    - debug:
+        msg: 'here1'
+      when: output.stdout is search('hello world')
+    - debug:
+        msg: 'here2'
+      when: output.stdout is not search('hello world')
