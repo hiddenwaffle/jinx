@@ -1,0 +1,29 @@
+---
+- hosts: localhost
+  gather_facts: no
+  vars:
+    user_json_file: '/tmp/user.json'
+    user:
+      name: 'mittens'
+      type: 'cat'
+  tasks:
+    - name: 'before'
+      debug:
+        var: user
+    - name: 'write variable'
+      delegate_to: localhost
+      copy:
+        content: "{{ user }}"
+        dest: user_json_file
+    - name: 'rename the cat'
+      delegate_to: localhost
+      replace:
+        path: user_json_file
+        regexp: 'mittens'
+        replace: 'spot'
+    - include_vars:
+        file: user_json_file
+        name: user
+    - name: 'after'
+      debug:
+        var: user

@@ -1,0 +1,13 @@
+---
+- hosts: localhost
+  gather_facts: no
+  vars:
+    cheese: 'CORNDOG'
+  tasks:
+    - name: 'say hello to a food item'
+      debug:
+        msg: 'Hello World {{ item }}' # notice this is still interpolated despite single quotes
+      loop:
+        - "one {{ cheese }}"
+        - "two {{ cheese }}"
+        - 'three {{ cheese }}' # notice this is still interpolated despite single quotes
