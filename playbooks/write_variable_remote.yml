@@ -1,0 +1,30 @@
+---
+- hosts: all
+  gather_facts: no # because it is using inventory_hostname instead of ansible_hostname
+  vars:
+    user_json_file: "/tmp/user.{{inventory_hostname}}.json"
+    user:
+      name: 'mittens'
+      type: 'cat'
+  tasks:
+    - name: 'before'
+      debug:
+        var: user
+    - name: 'write variable'
+      delegate_to: localhost # otherwise it would write to the remote host, i think
+      copy:
+        content: "{{ user }}"
+        dest: "{{ user_json_file }}"
+    - name: 'rename the cat'
+      delegate_to: localhost
+      replace:
+        path: "{{ user_json_file }}"
+        regexp: 'mittens'
+        replace: 'spot_{{inventory_hostname}}'
+    - name: 'read variable'
+      include_vars:
+        file: "{{ user_json_file }}"
+        name: user
+    - name: 'after'
+      debug:
+        var: user

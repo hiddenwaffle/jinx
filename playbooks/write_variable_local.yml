@@ -11,7 +11,7 @@
       debug:
         var: user
     - name: 'write variable'
-      delegate_to: localhost
+      # delegate_to: localhost # this would go here if we are on a remote host
       copy:
         content: "{{ user }}"
         dest: user_json_file
