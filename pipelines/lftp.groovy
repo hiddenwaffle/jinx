@@ -1,7 +1,7 @@
 // See lftp/lftp.md for more information
 // This pipeline assumes that the information in the doc is still valid
 
-doIt { command ->
+doIt {
     stage('Do it') {
         sh """
             date
@@ -26,4 +26,3 @@ void doIt(fn) {
         }
     }
 }
-
