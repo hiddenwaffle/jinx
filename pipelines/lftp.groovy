@@ -4,7 +4,7 @@
 doIt {
     stage('Do it') {
         sh """
-            poetry run ansible -i 'localhost,' localhost --connection=local -m debug -a 'msg="Hello World"'
+            poetry run ansible playbooks/lftp.yml
             lftp --version
         """
     }
