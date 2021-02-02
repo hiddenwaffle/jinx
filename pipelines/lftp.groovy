@@ -4,6 +4,7 @@
 doIt {
     stage('Do it') {
         sh """
+            #!/usr/bin/env bash
             date
             type lftp
             date
