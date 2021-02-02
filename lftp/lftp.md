@@ -6,16 +6,11 @@ Start an SFTP server with one directory, `/upload` and username/password `foo/pa
 docker run --rm -p 22:22 atmoz/sftp foo:pass:::upload
 ```
 
-Build the LFTP image from the Dockerfile in this directory, if necessary
-
-```
-docker build -t lftp_client .
-```
-
 Start an LFTP container that can connect to the host
+* Jenkins builds this container, but you might have to manually if it does not exist.
 
 ```
-docker run -it --rm --add-host=sftp_server:192.168.65.2 lftp_client bash
+docker run -it --rm --add-host=sftp_server:192.168.65.2 lftp_client tempdeleteme
 ```
 
 Test the connection
