@@ -1,4 +1,4 @@
-// See lftp/lftp.md for more information
+// See lftp.md for more information
 // This pipeline assumes that the information in the doc is still valid
 
 doIt {
