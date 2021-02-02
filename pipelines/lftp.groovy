@@ -4,10 +4,7 @@
 doIt {
     stage('Do it') {
         sh """
-            #!/usr/bin/env bash
-            date
-            type lftp
-            date
+            poetry run ansible -i 'localhost,' localhost --connection=local -m debug -a 'msg="Hello World"'
         """
     }
 }
