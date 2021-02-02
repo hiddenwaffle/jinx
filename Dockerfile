@@ -2,6 +2,9 @@ FROM python:3.9.1
 
 WORKDIR /work
 
+RUN apt update && \
+    apt install lftp
+
 # Set up Poetry
 RUN curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python -
 ENV PATH "$PATH:/root/.poetry/bin"
