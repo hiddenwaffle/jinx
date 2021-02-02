@@ -3,7 +3,11 @@
 
 doIt { command ->
     stage('Do it') {
-        sh "one"
+        sh """
+            date
+            type lftp
+            date
+        """
     }
 }
 
@@ -16,7 +20,7 @@ void doIt(fn) {
         stage('Setup') {
             checkout scm
         }
-        image = docker.build("tempdeleteme:latest")
+        image = docker.build("lftp_client:latest")
         image.inside('--add-host=sftp_server:192.168.65.2') {
             fn(command)
         }
