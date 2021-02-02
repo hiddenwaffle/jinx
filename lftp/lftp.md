@@ -6,10 +6,10 @@ Start an SFTP server with one directory, `/upload` and username/password `foo/pa
 docker run --rm -p 22:22 atmoz/sftp foo:pass:::upload
 ```
 
-Build the LFTP image, if necessary
+Build the LFTP image from the Dockerfile in this directory, if necessary
 
 ```
-docker build -f Dockerfile.lftp -t lftp_client .
+docker build -t lftp_client .
 ```
 
 Start an LFTP container that can connect to the host

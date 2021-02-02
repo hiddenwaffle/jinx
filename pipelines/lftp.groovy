@@ -21,7 +21,7 @@ void doIt(fn) {
         stage('Setup') {
             checkout scm
         }
-        image = docker.build('lftp_client:latest', '-f Dockerfile.lftp')
+        image = docker.build('lftp_client:latest', '-f Dockerfile.lftp ./lftp')
         image.inside('--add-host=sftp_server:192.168.65.2') {
             fn()
         }
