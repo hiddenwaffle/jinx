@@ -4,7 +4,7 @@
 doIt {
     stage('Do it') {
         sh """
-            poetry run ansible playbooks/lftp.yml
+            poetry run ansible-playbook playbooks/lftp.yml
             lftp --version
         """
     }
