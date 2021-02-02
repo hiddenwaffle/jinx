@@ -2,10 +2,11 @@
 - hosts: localhost
   gather_facts: no
   tasks:
-    - name: Test
+    - name: Do it
       shell: |
-        echo 'hello world'
-        cat /etc/hosts
+        pwd
+        lftp --version
+        pwd
       register: output
     - debug:
         var: output.stdout
