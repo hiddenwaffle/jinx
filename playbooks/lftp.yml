@@ -4,6 +4,7 @@
   tasks:
     - name: Do it
       shell: |
+        ssh-keyscan -H sftp_server >> ~/.ssh/known_hosts
         mkdir -p tmp/stuff
         touch tmp/stuff/1
         touch tmp/stuff/2
