@@ -22,7 +22,7 @@ void doIt(fn) {
         }
         image = docker.build("lftp_client:latest")
         image.inside('--add-host=sftp_server:192.168.65.2') {
-            fn(command)
+            fn()
         }
     }
 }
