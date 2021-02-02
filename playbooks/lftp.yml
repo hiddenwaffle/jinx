@@ -1,0 +1,11 @@
+---
+- hosts: localhost
+  gather_facts: no
+  tasks:
+    - name: Test
+      shell: |
+        echo 'hello world'
+        cat /etc/hosts
+      register: output
+    - debug:
+        var: output.stdout

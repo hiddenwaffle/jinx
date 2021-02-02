@@ -3,9 +3,7 @@
   gather_facts: no # TODO: temporary?
   tasks:
     - name: Test
-      command: >
-        echo 'hello world'
-        cat /etc/hosts
+      command: echo 'hello world'
       register: output
     - debug:
         var: output.stdout
