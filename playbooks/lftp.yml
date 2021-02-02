@@ -9,7 +9,12 @@
         touch tmp/stuff/1
         touch tmp/stuff/2
         touch tmp/stuff/3
-        lftp -c 'open -e "mirror --parallel=20 -R ./tmp/stuff/ /upload/2021" sftp://foo@sftp_server'
+    - name: Do it
+      expect:
+        command: |
+          lftp -c 'open -e "mirror --parallel=20 -R ./tmp/stuff/ /upload/2021" sftp://foo@sftp_server'
+        responses:
+          'Password:': 'pass'
       register: output
     - debug:
         var: output.stdout
