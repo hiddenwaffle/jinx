@@ -2,10 +2,12 @@ FROM python:3.9.1
 
 WORKDIR /work
 
+# TODO: This is temporary for lftp testing, can be commented out on next change
 RUN apt update && \
     apt install lftp
 
 # Set up Poetry
+# TODO: Download the script and use that instead of curling
 RUN curl -sSL https://raw.githubusercontent.com/python-poetry/poetry/master/get-poetry.py | python -
 ENV PATH "$PATH:/root/.poetry/bin"
 
