@@ -6,22 +6,31 @@ Start an SFTP server with one directory, `/upload` and username/password `foo/pa
 docker run --rm -p 22:22 atmoz/sftp foo:pass:::upload
 ```
 
-Start another container and run LFTP in it
+Build the LFTP image, if necessary
 
 ```
-docker run -it --rm python:3.9.1 bash
+docker build -f Dockerfile.lftp -t lftp_client .
 ```
 
-In the LFTP container, point the domain name to host IP and install LFTP
+Start an LFTP container that can connect to the host
 
 ```
-echo '192.168.65.2 testserver' >> /etc/hosts
-apt update
-apt install lftp
+docker run -it --rm --add-host=sftp_server:192.168.65.2 lftp_client bash
 ```
 
 Test the connection
 
 ```
-lftp sftp://foo@testserver
+mkdir ~/.ssh
+chmod 700 ~/.ssh
+ssh-keyscan -H sftp_server >> ~/.ssh/known_hosts
+lftp sftp://foo@sftp_server
+```
+
+Example: Run a mirror command from the shell
+* This copies the contents of /tmp/cheeseburgers into /upload/2021
+* It creates the directory if it does not exist
+
+```
+lftp -c 'open -e "mirror --parallel=20 -R /tmp/cheeseburgers/ /upload/2021" sftp://foo@sftp_server'
 ```
