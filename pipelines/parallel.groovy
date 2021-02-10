@@ -16,5 +16,5 @@ stage('Parallel') {
 }
 
 void test(a) {
-  echo "TEST {a}"
+  echo "TEST ${a}"
 }
