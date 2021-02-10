@@ -8,7 +8,7 @@
     - debug:
         var: start_time.stdout
     - name: 'Long running operation'
-      command: echo 'hello world'
+      command: ./tmp/long_running.sh
       register: async_result
       async: 120
       poll: 30
