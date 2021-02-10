@@ -5,5 +5,7 @@
     - name: Test
       command: echo 'hello world'
       register: output
+      async: 120
+      poll: 30
     - debug:
         var: output.stdout
