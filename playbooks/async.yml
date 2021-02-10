@@ -10,8 +10,8 @@
     - name: 'Long running operation'
       command: /tmp/long_running.sh
       register: async_result
-      async: 120
-      poll: 30
+      async: 401
+      poll: 5
     - debug:
         var: async_result
     - name: 'Get end time'
