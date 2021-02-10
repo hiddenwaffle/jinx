@@ -2,15 +2,15 @@
 node {
     stage('Parallel') {
       parallel one: {
-        test('one')
+          test('one')
       }, two: {
-        test('two')
+          test('two')
       }, three: {
-        test('three')
+          test('three')
       }
     }
 }
 
 void test(a) {
-  echo "TEST ${a}"
+    echo "TEST ${a}"
 }
