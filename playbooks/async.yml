@@ -2,10 +2,20 @@
 - hosts: roman
   gather_facts: no
   tasks:
-    - name: Test
+    - name: 'Get start time'
+      command: date
+      register: start_time
+    - debug:
+        var: start_time.stdout
+    - name: 'Long running operation'
       command: echo 'hello world'
-      register: output
+      register: async_result
       async: 120
       poll: 30
     - debug:
-        var: output.stdout
+        var: async_result
+    - name: 'Get end time'
+      command: date
+      register: end_time
+    - debug:
+        var: end_time.stdout
