@@ -1,0 +1,9 @@
+---
+- hosts: roman
+  gather_facts: no
+  tasks:
+    - name: Test
+      command: echo 'hello world'
+      register: output
+    - debug:
+        var: output.stdout
