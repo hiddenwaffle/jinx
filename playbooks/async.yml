@@ -8,10 +8,13 @@
     - debug:
         var: start_time.stdout
     - name: 'Long running operation'
-      command: /tmp/long_running.sh
+      shell: ls MEOW; echo 'hi'; exit 0
       register: async_result
       async: 401
-      poll: 5
+      poll: 1
+      retries: 5
+      delay: 1
+      until: async_result is succeeded
     - debug:
         var: async_result
     - name: 'Get end time'

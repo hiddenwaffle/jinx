@@ -1,0 +1,18 @@
+# This shows that retries/delay/until is per item when looping
+---
+- hosts: roman
+  gather_facts: no
+  tasks:
+    - command: ls /home/vagrant
+      register: ls_output
+    - debug:
+        var: ls_output.stdout
+    - shell: |
+        rmdir /home/vagrant/{{ item }}
+      register: shell_output
+      with_items: '{{ ls_output.stdout_lines }}'
+      retries: 5 # arbitrary
+      delay: 5 # arbitrary
+      until: shell_output is succeeded
+    - debug:
+        var: shell_output

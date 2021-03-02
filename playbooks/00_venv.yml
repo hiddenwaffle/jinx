@@ -1,0 +1,15 @@
+---
+- hosts: roman
+  gather_facts: no
+  tasks:
+    - file:
+        path: /home/vagrant/venvs/jinx
+        state: directory
+        mode: 0755
+    - pip:
+        name: '{{ item.name }}'
+        state: present
+        virtualenv: /home/vagrant/venvs/jinx
+        virtualenv_command: python3 -m venv
+      loop: # TODO: Pin versions
+        - name: pexpect

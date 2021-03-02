@@ -1,0 +1,16 @@
+---
+- hosts: roman
+  gather_facts: no
+  become: yes
+  tasks:
+    # NOTE: First need to:
+    #    yum install libselinux-python3
+    # so just do that manually because the yum ansible module is being a PITA
+    - copy:
+        src: '{{ item }}'
+        dest: /etc/pki/ca-trust/source/anchors/
+      loop:
+        - '~/Downloads/corp-mitm-certs/root.pem'
+        - '~/Downloads/corp-mitm-certs/sub_ca.pem'
+    - command: |
+        update-ca-trust

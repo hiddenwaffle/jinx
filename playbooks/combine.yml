@@ -1,0 +1,20 @@
+---
+- hosts: roman
+  gather_facts: no
+  tasks:
+    - set_fact:
+        ansible_python_interpreter: /home/vagrant/venvs/jinx/bin/python
+- hosts: roman
+  gather_facts: no
+  tasks:
+    - expect:
+        command: /usr/bin/env bash -c "echo '{{ item }}'; exit 0"
+        responses:
+          'password': 'hunter2'
+      loop:
+        - A
+        - B
+        - C
+      register: expect_output
+    - debug:
+        var: expect_output

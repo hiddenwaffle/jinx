@@ -1,0 +1,27 @@
+---
+- name: 'test'
+  hosts: localhost
+  gather_facts: no
+  tasks:
+    - expect:
+        command: /usr/bin/env bash -c "echo 'A {{ item }}'; echo 'line2'; echo 'line'"
+        responses:
+          'password': 'asdf'
+        timeout: 10
+#      no_log: true
+      register: expect_output
+      loop:
+        - 'one'
+        - 'two'
+        - 'three'
+    - debug:
+        var: expect_output
+    - set_fact:
+        expect_output_cmd: "{{ expect_output | json_query('results[*].cmd') }}"
+    - set_fact:
+        expect_output_stdout_lines: "{{ expect_output | json_query('results[*].stdout_lines') }}"
+    - debug:
+        msg: 'test {{ item.1 }}'
+      loop: '{{ expect_output_cmd | zip(expect_output_stdout_lines) | list }}'
+      loop_control:
+        label: '{{ item.0 }}'
