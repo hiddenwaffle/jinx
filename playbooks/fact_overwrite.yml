@@ -11,10 +11,22 @@
         command: /usr/bin/env bash -c "echo '{{ item }}'; exit 0"
         responses:
           'password': 'hunter2'
-      loop:
+      loop: # Expect password seems to only be an issue when registering loop output
         - A
         - B
         - C
       register: expect_output
-    - debug:
+    - name: 'BEFORE'
+      debug:
         var: expect_output
+    - remove_expect_responses_from_list:
+        x: 9
+      register: expect_output_sanitized
+    - name: 'AFTER'
+      debug:
+        var: expect_output_sanitized
+#    - square:
+#        x: 9
+#      register: square_output
+#    - debug:
+#        var: square_output
