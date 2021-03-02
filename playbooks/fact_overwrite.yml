@@ -19,14 +19,9 @@
     - name: 'BEFORE'
       debug:
         var: expect_output
-    - remove_expect_responses_from_list:
-        x: 9
-      register: expect_output_sanitized
+    - delete_expect_responses_from_list_of_expect_facts:
+        original: '{{ expect_output }}'
+      register: expect_output
     - name: 'AFTER'
       debug:
-        var: expect_output_sanitized
-#    - square:
-#        x: 9
-#      register: square_output
-#    - debug:
-#        var: square_output
+        var: expect_output
