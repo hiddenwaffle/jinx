@@ -1,0 +1,31 @@
+# Run with:
+# ANSIBLE_ENABLE_TASK_DEBUGGER=True ansible-playbook -i localhost, -l localhost playbooks/double_interpolate.yml
+# https://docs.ansible.com/ansible/2.10/user_guide/playbooks_debugger.html#update-vars-command
+---
+- hosts: localhost
+  debugger: always
+  gather_facts: no
+  vars:
+    cheese: 'CORNDOG'
+  tasks:
+    - name: 'say hello to a food item 1'
+      debug:
+        msg: 'Hello World {{ item }}'
+      loop:
+        - "one {{ cheese }}"
+        - "two {{ cheese }}"
+        - 'three {{ cheese }}'
+    - name: 'say hello to a food item 2'
+      debug:
+        msg: 'Hello World {{ item }}'
+      loop:
+        - "one {{ cheese }}"
+        - "two {{ cheese }}"
+        - 'three {{ cheese }}'
+    - name: 'say hello to a food item 3'
+      debug:
+        msg: 'Hello World {{ item }}'
+      loop:
+        - "one {{ cheese }}"
+        - "two {{ cheese }}"
+        - 'three {{ cheese }}'
