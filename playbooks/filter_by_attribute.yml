@@ -1,0 +1,17 @@
+---
+- hosts: localhost
+  gather_facts: no
+  tasks:
+    ##-------------------##
+    # Example with a list
+    ##-------------------##
+    - set_fact:
+        stuff:
+          - { id: 1, name: 'hrothgar' }
+          - { id: 2, name: 'spot' }
+          - { id: 3, name: 'mittens' }
+    - set_fact:
+        stuff2: '{{ stuff2 | default([]) + [item] }}'
+      with_items: '{{ stuff }}'
+      when: item.id != 2
+    - debug: var=stuff2

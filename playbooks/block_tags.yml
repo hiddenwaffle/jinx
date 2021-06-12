@@ -1,0 +1,20 @@
+# Requires a variable, cheese to be passed into the playbook
+---
+- hosts: localhost
+  gather_facts: no
+  tasks:
+    - name: 'before'
+      debug: msg="before"
+    - block:
+        - name: 'test1'
+          debug: msg="hello1"
+          tags: [tagA]
+        - name: 'test2'
+          debug: msg="hello2"
+          tags: [tagA]
+        - name: 'test3'
+          debug: msg="hello3"
+          tags: [tagA, tagB]
+      when: cheese == 'please'
+    - name: after
+      debug: msg="after"
